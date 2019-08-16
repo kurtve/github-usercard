@@ -4,6 +4,18 @@
            https://api.github.com/users/<your name>
 */
 
+let userHandle = 'kurtve';
+
+axios.get(`https://api.github.com/users/${userHandle}`)
+  .then( response => {
+    console.log(response);
+  })
+  .catch( err => {
+    console.log('An error occurred!');
+    console.log(err);
+  });
+
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
