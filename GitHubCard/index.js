@@ -9,7 +9,8 @@ let userHandle = 'kurtve';
 axios.get(`https://api.github.com/users/${userHandle}`)
   .then( response => {
     const card = makeCard(response);
-    console.log(card);
+    const cards = document.querySelector('.cards');
+    cards.appendChild(card);
   })
   .catch( err => {
     console.log('An error occurred!');
@@ -27,6 +28,9 @@ axios.get(`https://api.github.com/users/${userHandle}`)
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
+
+
+
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
@@ -67,6 +71,7 @@ const makeCard = obj => {
 
   const img = document.createElement('img');
   img.src = obj.data.avatar_url;
+  card.appendChild(img);
 
   const div = document.createElement('div');
   div.className = 'card-info';
@@ -86,7 +91,7 @@ const makeCard = obj => {
   div.appendChild(p);
 
   p = document.createElement('p');
-  p.textContent = 'Profile';
+  p.textContent = 'Profile: ';
   const a = document.createElement('a');
   a.href = obj.data.html_url;
   a.textContent = obj.data.html_url;
