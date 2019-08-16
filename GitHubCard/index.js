@@ -4,18 +4,21 @@
            https://api.github.com/users/<your name>
 */
 
-let userHandle = 'kurtve';
+const myHandle = 'kurtve';
 
-axios.get(`https://api.github.com/users/${userHandle}`)
-  .then( response => {
-    const card = makeCard(response);
-    const cards = document.querySelector('.cards');
-    cards.appendChild(card);
-  })
-  .catch( err => {
-    console.log('An error occurred!');
-    console.log(err);
-  });
+
+const addCard = userHandle => {
+
+  axios.get(`https://api.github.com/users/${userHandle}`)
+    .then( response => {
+      document.querySelector('.cards').appendChild(makeCard(response));
+    })
+    .catch( err => {
+      console.log('An error occurred!');
+      console.log(err);
+    });
+
+};
 
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -29,7 +32,7 @@ axios.get(`https://api.github.com/users/${userHandle}`)
            create a new component and add it to the DOM as a child of .cards
 */
 
-
+addCard(myHandle);
 
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
@@ -42,7 +45,18 @@ axios.get(`https://api.github.com/users/${userHandle}`)
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  'tetondan',
+  'dustinmyers',
+  'justsml',
+  'luishrd',
+  'bigknell',
+  ];
+
+
+followersArray.forEach(handle => addCard(handle));
+
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
